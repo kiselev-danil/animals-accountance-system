@@ -2,6 +2,7 @@ package ai.deeplay.animalsaccountancesystem.expression;
 
 import ai.deeplay.animalsaccountancesystem.common.AnimalModel;
 import ai.deeplay.animalsaccountancesystem.common.expression.EqualsExpression;
+import ai.deeplay.animalsaccountancesystem.common.expression.SimpleValueExpression;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,10 +21,10 @@ public class EqualsExpressionTest {
         list.add(m1);
         list.add(m2);
 
-        EqualsExpression expression = new EqualsExpression(list, "weight","42");
-        Object result = expression.evaluate();
+        EqualsExpression expression = new EqualsExpression(new SimpleValueExpression(list), "weight","42");
+        List<AnimalModel> result = expression.evaluate();
         Assertions.assertInstanceOf(List.class, result);
-        Assertions.assertEquals(2, ((List<?>) result).size());
+        Assertions.assertEquals(2, result.size());
 
     }
 
@@ -40,11 +41,10 @@ public class EqualsExpressionTest {
         list.add(m3);
 
 
-        EqualsExpression expression = new EqualsExpression(list, "weight","42");
-        Object result = expression.evaluate();
-        Assertions.assertInstanceOf(List.class, result);
-        Assertions.assertEquals(1, ((List<?>) result).size());
-        Assertions.assertEquals(1L, ((AnimalModel)(((List<?>) result).getFirst())).getId());
+        EqualsExpression expression = new EqualsExpression(new SimpleValueExpression(list), "weight","42");
+        List<AnimalModel> result = expression.evaluate();
+        Assertions.assertEquals(1, result.size());
+        Assertions.assertEquals(1L, result.getFirst().getId());
 
     }
 }

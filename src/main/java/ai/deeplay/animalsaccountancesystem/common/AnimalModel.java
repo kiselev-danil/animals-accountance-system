@@ -3,6 +3,7 @@ package ai.deeplay.animalsaccountancesystem.common;
 import lombok.*;
 
 import java.util.Map;
+import java.util.Objects;
 
 @Getter
 @AllArgsConstructor
@@ -19,4 +20,16 @@ public class AnimalModel {
         return properties.get(propertyName);
     }
 
+    @Override
+    public boolean equals(Object o) {
+//        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        AnimalModel that = (AnimalModel) o;
+        return Objects.equals(this.id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

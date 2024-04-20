@@ -9,14 +9,16 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 public class UnequalsExpression implements IExpression {
-    private List<AnimalModel> data;
+    private IExpression data;
     private String property;
     private Object criteria;
 
 
     @Override
-    public Object evaluate() {
-        return data.stream()
+    public List<AnimalModel> evaluate() {
+        return data
+                .evaluate()
+                .stream()
                 .filter(animalModel -> {
                     if (property.equals("id")) {
                         return animalModel.getId().equals(criteria);

@@ -1,6 +1,7 @@
 package ai.deeplay.animalsaccountancesystem.expression;
 
 import ai.deeplay.animalsaccountancesystem.common.AnimalModel;
+import ai.deeplay.animalsaccountancesystem.common.expression.SimpleValueExpression;
 import ai.deeplay.animalsaccountancesystem.common.expression.UnequalsExpression;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,10 +21,9 @@ public class UnequalsExpressionTest {
         list.add(m1);
         list.add(m2);
 
-        UnequalsExpression expression = new UnequalsExpression(list, "weight","42");
-        Object result = expression.evaluate();
-        Assertions.assertInstanceOf(List.class, result);
-        Assertions.assertEquals(0, ((List<?>) result).size());
+        UnequalsExpression expression = new UnequalsExpression(new SimpleValueExpression(list), "weight","42");
+        List<AnimalModel> result = expression.evaluate();
+        Assertions.assertEquals(0, result.size());
 
     }
 
@@ -39,10 +39,9 @@ public class UnequalsExpressionTest {
         list.add(m2);
         list.add(m3);
 
-        UnequalsExpression expression = new UnequalsExpression(list, "weight","42");
-        Object result = expression.evaluate();
-        Assertions.assertInstanceOf(List.class, result);
-        Assertions.assertEquals(2, ((List<?>) result).size());
+        UnequalsExpression expression = new UnequalsExpression(new SimpleValueExpression(list), "weight","42");
+        List<AnimalModel> result = expression.evaluate();
+        Assertions.assertEquals(2, result.size());
 
     }
 }
