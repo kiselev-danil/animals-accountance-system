@@ -9,8 +9,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 /**
- * WARNING! May cause memory problem caused by String max length;
- * */
+ * Reads data from a JSON file and implements the IDataReader interface.
+ */
 @Setter
 @Getter
 @Component
@@ -19,6 +19,12 @@ public class JsonFileReader implements IDataReader {
     private Path filePath;
 
 
+    /**
+     * Reads the content from the JSON file at the specified file path.
+     *
+     * @return The content of the JSON file as a single string.
+     * @throws RuntimeException if the file path is null or an IO Exception occurs during reading.
+     */
     @Override
     public String read() {
         if (filePath == null) {

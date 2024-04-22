@@ -8,18 +8,20 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * JSON example
+ * Parses JSON data to create a list of AnimalModel objects and implements the IDataParser interface.
+ * <p\>
+ * JSON example <p\>
  * [{
- *     id: "12",
- *     owner: "Wilson!!!"
- *     name: "Kenny"
- *     weight: "42"
- * },
+ *     "id": "12",
+ *     "owner": "Wilson!!!",
+ *     "name": "Kenny",
+ *     "weight": "42"
+ * },<p\>
  * {
- *    id: "13",
- *    owner: "Wilson!!!"
- *    name: "Kenny"
- *    weight: "42"
+ *    "id": "13",
+ *    "owner": "Wilson!!!",
+ *    "name": "Kenny",
+ *    "weight": "42"
  *  }
  * ]
  * */
@@ -28,6 +30,12 @@ public class JsonDataParser implements IDataParser {
 
     Long id;
 
+    /**
+     * Parses a JSON string to create a list of AnimalModel objects.
+     *
+     * @param jsonStr The JSON string to parse
+     * @return A list of AnimalModel objects created from the JSON data.
+     */
     @Override
     public List<AnimalModel> dataFromString(String jsonStr) {
         if (id == null){
@@ -45,6 +53,13 @@ public class JsonDataParser implements IDataParser {
         return result;
     }
 
+    /**
+     * Builds an AnimalModel object from a JSONObject. Assigns the lastId as the ID.
+     *
+     * @param jsonObject The JSONObject from which to build the AnimalModel object.
+     * @param lastId     The last assigned ID to use for the new object.
+     * @return The AnimalModel object built from the JSONObject.
+     */
     private AnimalModel buildAnimalModelFromJsonObject(JSONObject jsonObject, Long lastId) {
         AnimalModel animalModel = new AnimalModel(lastId);
         jsonObject
@@ -53,6 +68,11 @@ public class JsonDataParser implements IDataParser {
         return animalModel;
     }
 
+    /**
+     * Sets the starting ID for creating AnimalModel objects from JSON data.
+     *
+     * @param id The starting ID value to set.
+     */
     public void setStartId(Long id){
         this.id = id;
     }

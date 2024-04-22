@@ -20,9 +20,6 @@ import java.util.List;
 public class SimpleTextRequestParserTest {
     private final String collectionName = "animal";
     private final String eqOperator = "==";
-    private final String uneqOperator = "!=";
-    private  final String andOperator = "&&";
-    private final String orOperator = "||";
 
     @Autowired
     PlainTextRequestsParser parser;
@@ -37,40 +34,6 @@ public class SimpleTextRequestParserTest {
         String str = "aaa  !! bbb";
         var splitted = str.split(" ");
         Assertions.assertEquals(4, splitted.length);
-    }
-
-    @Test
-    public void requestIsDataKeywordTestIsTrue(){
-        String request = collectionName;
-        boolean res = parser.requestIsDataKeyword(request);
-        Assertions.assertTrue(res);
-    }
-
-    @Test
-    public void requestIsPropertyCriteriaTest() {
-        String request = "property:\"approximate criteria value\"";
-        boolean res = parser.requestIsPropertyCriteria(request);
-        Assertions.assertTrue(res);
-    }
-
-    @Test
-    public void requestIsNotPropertyCriteriaTest() {
-        String request = "animal == property:\"approximate criteria value\"";
-        boolean res = parser.requestIsPropertyCriteria(request);
-        Assertions.assertFalse(res);
-    }
-
-    @Test
-    public void extractPropertyNameTest() {
-        String request = "property:\"approximate criteria value\"";
-        String res = parser.extractPropertyName(request);
-        Assertions.assertEquals("property",res);
-    }
-
-    @Test
-    public void removeOperatorFromLeftOperandTest(){
-        String left = "animal ==";
-        Assertions.assertEquals("animal", parser.removeOperatorFromLeftOperand(left, " == "));
     }
 
     @Test

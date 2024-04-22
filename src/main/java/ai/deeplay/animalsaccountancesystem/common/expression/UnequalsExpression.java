@@ -6,6 +6,9 @@ import lombok.Getter;
 
 import java.util.List;
 
+/**
+ * Represents an unequals comparison expression that checks for inequality between a property of AnimalModel objects and a criteria.
+ */
 @Getter
 @AllArgsConstructor
 public class UnequalsExpression implements IExpression {
@@ -14,6 +17,11 @@ public class UnequalsExpression implements IExpression {
     private Object criteria;
 
 
+    /**
+     * Evaluates the unequals expression by filtering the data based on property inequality criteria.
+     *
+     * @return The list of AnimalModel objects that do not satisfy the criteria for the specified property.
+     */
     @Override
     public List<AnimalModel> evaluate() {
         return data

@@ -29,20 +29,14 @@ public class AnimalsAccountanceSystemApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		log.info("Application running");
 		Path dataPath = Path.of(args[0]);
-		String request = removeSingleQuotas(args[1]);
+		String request = args[1];
 		dataReader.setFilePath(dataPath);
 		var data = dataParser.dataFromString(dataReader.read());
+		log.info("Datafile parsed");
 		requestParser.setData(data);
 		IExpression requestExpression = requestParser.proceedRequest(request);
-		System.out.println(requestExpression.evaluate().size());
+		log.info("Request parsed");
+		System.out.println("Number of animals fits criteria: " + requestExpression.evaluate().size());
 	}
 
-	public String removeSingleQuotas(String request) {
-		StringBuilder sb = new StringBuilder(request);
-		if((sb.charAt(0) == '\'') && (sb.charAt(sb.length()-1) == '\'')) {
-			sb.delete(0,1);
-			sb.delete(sb.length()-1,sb.length());
-		}
-		return sb.toString();
-	}
 }
