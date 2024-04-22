@@ -7,12 +7,14 @@ import ai.deeplay.animalsaccountancesystem.common.expression.SimpleValueExpressi
 import ai.deeplay.animalsaccountancesystem.common.expression.UnequalsExpression;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+@ActiveProfiles("test")
 public class AndExpressionTest {
 
     @Test

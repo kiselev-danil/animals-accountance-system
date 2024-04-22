@@ -5,11 +5,13 @@ import ai.deeplay.animalsaccountancesystem.common.expression.EqualsExpression;
 import ai.deeplay.animalsaccountancesystem.common.expression.SimpleValueExpression;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@ActiveProfiles("test")
 public class EqualsExpressionTest {
     @Test
     void testEqualsExpressionBothHaveProperty() {

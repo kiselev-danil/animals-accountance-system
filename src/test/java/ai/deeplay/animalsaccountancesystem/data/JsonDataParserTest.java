@@ -3,9 +3,10 @@ package ai.deeplay.animalsaccountancesystem.data;
 import ai.deeplay.animalsaccountancesystem.common.AnimalModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
-
+@ActiveProfiles("test")
 public class JsonDataParserTest {
 
     /*

@@ -4,12 +4,14 @@ import ai.deeplay.animalsaccountancesystem.common.AnimalModel;
 import ai.deeplay.animalsaccountancesystem.common.expression.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+@ActiveProfiles("test")
 public class OrExpressionTest {
     @Test
     public void testHalfIntersection(){
