@@ -124,7 +124,7 @@ public class PlainTextRequestsParser implements RequestParser {
      * @return A left operand string without operator
      */
     private String removeOperatorFromLeftOperand(String operand, String operator) {
-        return operand.trim().split(operator.trim() + "$")[0].trim();
+        return operand.trim().split(escapeVerticalBarForRegExp(operator).trim() + "$")[0].trim();
     }
 
     /**
@@ -224,7 +224,10 @@ public class PlainTextRequestsParser implements RequestParser {
      * @return The unnested operator found, or null if not .
      */
     private String findUnnestedOperator(String unnestedRequest) {
-        String regularExpression = "\s(" + eqOperator + "|" + uneqOperator + "|" + andOperator + "|" + orOperator + ")\s";
+        // in regEx '|' - special symbol, so OR must be usel like this: \|\|
+
+
+        String regularExpression = "\s(" + eqOperator + "|" + uneqOperator + "|" + andOperator + "|" + escapeVerticalBarForRegExp(orOperator) + ")\s";
         Pattern pattern = Pattern.compile(regularExpression);
         Matcher matcher = pattern.matcher(unnestedRequest);
         if (matcher.find()) {
@@ -235,4 +238,11 @@ public class PlainTextRequestsParser implements RequestParser {
             return null;
         }
     }
+
+    private String escapeVerticalBarForRegExp(String str){
+        StringBuilder sb = new StringBuilder(str);
+        sb.replace(0, sb.length(), sb.toString().replace("|", "\\|"));
+        return sb.toString();
+    }
+
 }

@@ -4,6 +4,7 @@ import ai.deeplay.animalsaccountancesystem.common.AnimalModel;
 import ai.deeplay.animalsaccountancesystem.common.expression.AndExpression;
 import ai.deeplay.animalsaccountancesystem.common.expression.EqualsExpression;
 import ai.deeplay.animalsaccountancesystem.common.expression.IExpression;
+import ai.deeplay.animalsaccountancesystem.common.expression.OrExpression;
 import ai.deeplay.animalsaccountancesystem.request.parser.PlainTextRequestsParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -72,6 +73,16 @@ public class SimpleTextRequestParserTest {
         var resultData = result.evaluate();
         Assertions.assertEquals(2, resultData.size());
         Assertions.assertTrue(isAllPresented(Arrays.asList(3L,5L), resultData));
+    }
+
+    @Test
+    public void testNestedRequestSameDepthParsedWithOR() {
+        String request = "(animal != weight:\"42\") || (animal == owner:\"Kenny\")";
+        IExpression result = parser.proceedRequest(request);
+        Assertions.assertInstanceOf(OrExpression.class, result);
+        var resultData = result.evaluate();
+        Assertions.assertEquals(4, resultData.size());
+        Assertions.assertTrue(isAllPresented(Arrays.asList( 3L, 5L, 6L, 4L), resultData));
     }
 
     @Test
