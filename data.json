@@ -1,0 +1,33 @@
+[
+  {
+    "name": "Burenka",
+    "food": "Травоядное",
+    "size": "Большое"
+  },
+  {
+    "name": "Bobr!",
+    "food": "Травоядное",
+    "size": "Маленькое"
+  },
+  {
+    "name": "Fantastic Mr. Fox",
+    "food": "Плотоядное",
+    "size": "Маленькое"
+  },
+  {
+    "name": "Lion king",
+    "food": "Плотоядное",
+    "size": "Большое"
+  },
+  {
+    "name": "Winnie the pooh",
+    "food": "Всеядное",
+    "height": "Высокое"
+  },
+  {
+    "name": "Heffalump",
+    "food": "Всеядное",
+    "size": "Большое",
+    "height": "Невысокое"
+  }
+]

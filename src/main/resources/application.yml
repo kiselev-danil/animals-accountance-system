@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: animals-accountance-system
+
+requests:
+  operators:
+    equals: "=="
+    unequals: "!="
+    and: "&&"
+    or: "||"
+  collection:
+    keyword: animal
