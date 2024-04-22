@@ -4,7 +4,6 @@ import ai.deeplay.animalsaccountancesystem.common.AnimalModel;
 import ai.deeplay.animalsaccountancesystem.common.expression.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +20,7 @@ import java.util.regex.Pattern;
 @Component
 @RequiredArgsConstructor
 public class PlainTextRequestsParser implements RequestParser {
-    @Setter
+
     @Getter
     private List<AnimalModel> dataset;
 
@@ -41,6 +40,7 @@ public class PlainTextRequestsParser implements RequestParser {
     private String orOperator;
 
     private char propertyCriteriaSplitChar = ':';
+
 
 
     @Override
@@ -91,6 +91,11 @@ public class PlainTextRequestsParser implements RequestParser {
         else {
             return createLogicalExpression(proceedRequest(left.trim()), proceedRequest(right.trim()), unnestedOperator.trim());
         }
+    }
+
+    @Override
+    public void setData(List<AnimalModel> data) {
+        this.dataset = data;
     }
 
     public String removeBraces(String request) {

@@ -29,7 +29,7 @@ public class SimpleTextRequestParserTest {
 
     @BeforeEach
     public void setUp(){
-        parser.setDataset(getSimpleValueExpressionData());
+        parser.setData(getSimpleValueExpressionData());
     }
 
     @Test

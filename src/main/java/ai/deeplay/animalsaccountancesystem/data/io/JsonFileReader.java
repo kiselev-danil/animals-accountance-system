@@ -2,17 +2,18 @@ package ai.deeplay.animalsaccountancesystem.data.io;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 /**
  * WARNING! May cause memory problem caused by String max length;
  * */
 @Setter
 @Getter
+@Component
 public class JsonFileReader implements IDataReader {
 
     private Path filePath;
