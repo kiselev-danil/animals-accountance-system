@@ -2,6 +2,7 @@ package ai.deeplay.animalsaccountancesystem.data.io;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.List;
 @Setter
 @Getter
 @Component
+@Slf4j
 public class JsonFileReader implements IDataReader {
 
     private Path filePath;
@@ -36,6 +38,7 @@ public class JsonFileReader implements IDataReader {
             list = Files.readAllLines(filePath);
         }
         catch(IOException exception) {
+            log.error("IO Exception occurred during Data file reading. File path {}", filePath.toAbsolutePath());
             throw new RuntimeException("IO Exception occurred");
         }
 
