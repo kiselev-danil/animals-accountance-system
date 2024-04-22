@@ -24,10 +24,15 @@ import java.util.List;
  * ]
  * */
 @Component
-public class JsonDataParser implements IDataParser{
-    Long id = 0L;
+public class JsonDataParser implements IDataParser {
+
+    Long id;
+
     @Override
     public List<AnimalModel> dataFromString(String jsonStr) {
+        if (id == null){
+            id = 0L;
+        }
         List<AnimalModel> result = new ArrayList<>();
         JSONArray jsonArray = new JSONArray(jsonStr);
         for (int i=0; i<jsonArray.length(); i++) {
@@ -36,7 +41,7 @@ public class JsonDataParser implements IDataParser{
             id++;
             result.add(model);
         }
-        id = 0L;
+
         return result;
     }
 
@@ -46,5 +51,9 @@ public class JsonDataParser implements IDataParser{
                 .keySet()
                 .forEach(key -> animalModel.setProperty(key, jsonObject.getString(key)));
         return animalModel;
+    }
+
+    public void setStartId(Long id){
+        this.id = id;
     }
 }
