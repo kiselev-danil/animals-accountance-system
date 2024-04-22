@@ -2,6 +2,7 @@ package ai.deeplay.animalsaccountancesystem.common;
 
 import lombok.*;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -12,7 +13,10 @@ public class AnimalModel {
     private final Long id;
     private Map<String, String> properties;
 
-    public void setProperty(String propertyName, String propertyValue){
+    public void setProperty(String propertyName, String propertyValue) {
+        if(properties == null) {
+            properties = new HashMap<>();
+        }
         properties.put(propertyName, propertyValue);
     }
 
@@ -22,7 +26,6 @@ public class AnimalModel {
 
     @Override
     public boolean equals(Object o) {
-//        if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         AnimalModel that = (AnimalModel) o;
         return Objects.equals(this.id, that.id);
