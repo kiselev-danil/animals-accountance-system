@@ -1,0 +1,3 @@
+animal == food:"Травоядное";
+((animal == food:"Травоядное") || (animal == food:"Плотоядное")) && (animal == size:"Маленькое");
+(animal == food:"Всеядное") && (animal != height:"Высокое");

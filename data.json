@@ -1,15 +1,33 @@
 [
   {
-    "id": "12",
-    "owner": "Wilson!!!",
-    "name": "Kenny",
-    "weight": "42"
+    "name": "Burenka",
+    "food": "Травоядное",
+    "size": "Большое"
   },
   {
-    "id": "13",
-    "owner": "Shapoklack, The old lady",
-    "name": "Cheburashka",
-    "weight": "42",
-    "status": "Unnamed toy"
+    "name": "Bobr!",
+    "food": "Травоядное",
+    "size": "Маленькое"
+  },
+  {
+    "name": "Fantastic Mr. Fox",
+    "food": "Плотоядное",
+    "size": "Маленькое"
+  },
+  {
+    "name": "Lion king",
+    "food": "Плотоядное",
+    "size": "Большое"
+  },
+  {
+    "name": "Winnie the pooh",
+    "food": "Всеядное",
+    "height": "Высокое"
+  },
+  {
+    "name": "Heffalump",
+    "food": "Всеядное",
+    "size": "Большое",
+    "height": "Невысокое"
   }
 ]

@@ -3,6 +3,7 @@ package ai.deeplay.animalsaccountancesystem;
 import ai.deeplay.animalsaccountancesystem.common.expression.IExpression;
 import ai.deeplay.animalsaccountancesystem.data.IDataParser;
 import ai.deeplay.animalsaccountancesystem.data.io.JsonFileReader;
+import ai.deeplay.animalsaccountancesystem.request.input.IRequestReader;
 import ai.deeplay.animalsaccountancesystem.request.parser.RequestParser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Profile;
 
 import java.nio.file.Path;
+import java.util.List;
 
 @SpringBootApplication
 @RequiredArgsConstructor
@@ -21,6 +23,7 @@ public class AnimalsAccountanceSystemApplication implements CommandLineRunner {
 	private final JsonFileReader dataReader;
 	private final IDataParser dataParser;
 	private final RequestParser requestParser;
+	private final IRequestReader requestReader;
 
 	public static void main(String[] args) {
 		SpringApplication.run(AnimalsAccountanceSystemApplication.class, args);
@@ -46,14 +49,17 @@ public class AnimalsAccountanceSystemApplication implements CommandLineRunner {
 	private void generalPipeline(String[] args){
 		log.info("Application running");
 		Path dataPath = Path.of(args[0]);
-		String request = args[1];
+		Path requestPath = Path.of(args[1]);
 		dataReader.setFilePath(dataPath);
 		var data = dataParser.dataFromString(dataReader.read());
 		log.info("Datafile parsed");
 		requestParser.setData(data);
-		IExpression requestExpression = requestParser.proceedRequest(request);
-		log.info("Request parsed");
-		System.out.println("Number of animals fits criteria: " + requestExpression.evaluate().size());
+		List<String> requests = requestReader.read(requestPath);
+		for(String request : requests) {
+			IExpression requestExpression = requestParser.proceedRequest(request);
+			log.info("Request parsed");
+			System.out.println("Number of animals fits criteria: " + requestExpression.evaluate().size());
+		}
 	}
 
 }
